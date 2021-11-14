@@ -3,7 +3,7 @@ import pickle as pkl
 import numpy as np
 
 # loading all pickle files
-user_recom = pkl.load(open('models/user_recommendation.pkl', 'rb'))
+user = pkl.load(open('models/user_recommendation.pkl', 'rb'))
 xgb = pkl.load(open('models/Xgboost.pkl', 'rb'))
 tfidf = pkl.load(open('models/tfidf.pkl', 'rb'))
 transform = pkl.load(open('dataset/transform.pkl', 'rb'))
@@ -12,7 +12,7 @@ transform = pkl.load(open('dataset/transform.pkl', 'rb'))
 def recommendation(user_input):
     try:
         flag = True
-        data = user_recom.loc[user_input].sort_values(ascending=False)[0:20].index
+        data = user.loc[user_input].sort_values(ascending=False)[0:20].index
     except:
         flag = False
         data = 'User not present in dataset'
