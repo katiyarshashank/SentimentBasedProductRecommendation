@@ -20,7 +20,7 @@ def predict():
     if flag:
         # Sentiment model call
         data = model.sentiment(prods)
-        return render_template('index.html', tables=[data.to_html(classes='data', index=False)])
+        return render_template('index.html', tables=data)
     else:
         # User error message
         return render_template('index.html', message=prods)
