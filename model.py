@@ -4,7 +4,7 @@ import numpy as np
 
 # loading all pickle files
 user = pkl.load(open('models/user_recommendation.pkl', 'rb'))
-xgb = pkl.load(open('models/Xgboost.pkl', 'rb'))
+finalmodel = pkl.load(open('models/finalmodel.pkl', 'rb'))
 tfidf = pkl.load(open('models/tfidf.pkl', 'rb'))
 transform = pkl.load(open('dataset/transform.pkl', 'rb'))
 
@@ -23,7 +23,7 @@ def recommendation(user_input):
 def sentiment(prod_list):
     df = transform[transform.name.isin(prod_list)]
     features = tfidf.transform(df['text'])
-    pred = xgb.predict(features)
+    pred = finalmodel.predict(features)
     predictions = [round(value) for value in pred]
     df['predicted'] = predictions
 
